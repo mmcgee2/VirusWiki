@@ -3,17 +3,16 @@ from pydantic import BaseModel
 # from .Model import User
 
 
-class user_base(BaseModel):
+class virus_base(BaseModel):
     Changes: str
     Description: str
 
 
-class variant_create(user_base):
-    name: str
-
-
-class virus(user_base):
+class variant_create(BaseModel):
     Variant: str
+
+
+class virus(variant_create):
     id: int
 
     class Config:

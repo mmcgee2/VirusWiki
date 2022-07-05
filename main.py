@@ -41,10 +41,12 @@ def create_variant(virus: Schemas.variant_create, db: Session = Depends(get_db))
     return CRUD.create_variant(db=db, virus=virus)
 
 
+"""
 @app.get("/virus/", response_model=Schemas.virus)
 def read_variants(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
     variants = CRUD.get_variants(db, skip=skip, limit=limit)
     return variants
+"""
 
 
 @app.get("/virus/{id}", response_model=Schemas.virus)

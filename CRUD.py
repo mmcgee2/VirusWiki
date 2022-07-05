@@ -7,10 +7,7 @@ def get_id(db: Session, id: int):
 
 
 def get_variant(db: Session, variant: str, changes: str):
-    return (
-        db.query(Model.Virus).filter(Model.Virus.variant == variant).first(),
-        db.query(Model.Virus).filter(Model.Virus.changes == changes).first(),
-    )
+    return db.query(Model.Virus).filter(Model.Virus.variant == variant).first()
 
 
 def get_changes(db: Session, changes: str):

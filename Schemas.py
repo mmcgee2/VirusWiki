@@ -1,7 +1,5 @@
 from pydantic import BaseModel
 
-# from .Model import User
-
 
 class virus_base(BaseModel):
     changes: str

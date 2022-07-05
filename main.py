@@ -1,10 +1,10 @@
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
-from . import CRUD, Model, Schemas
-from .db import local_session, engine
+import CRUD, Model, Schemas
+from db import local_session, db_engine
 from fastapi.middleware.cors import CORSMiddleware
 
-Model.Base.metadata.create_all(bind=engine)
+Model.Base.metadata.create_all(bind=db_engine)
 
 app = FastAPI()
 
@@ -36,8 +36,8 @@ def get_db():
 def create_variant(virus: Schemas.variant_create, db: Session = Depends(get_db)):
     db_virus = CRUD.get_variant(db, name=virus.name)
     if db_virus:
-        raise HTTPException(status_code=400, detail="Virus already in use")
-    return CRUD.get_variant(db=db, virus=virus)
+        raise HTTPException(status_code=400, detail="Variant already in use")
+    return CRUD.create_variant(db=db, virus=virus)
 
 
 @app.get("/virus/", response_model=Schemas.virus)

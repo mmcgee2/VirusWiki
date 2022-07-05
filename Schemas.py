@@ -4,7 +4,7 @@ from pydantic import BaseModel
 
 
 class user_base(BaseModel):
-    Change: str
+    Changes: str
     Description: str
 
 
@@ -14,7 +14,7 @@ class variant_create(user_base):
 
 class virus(user_base):
     Variant: str
-    ID: int
+    id: int
 
     class Config:
         orm_mode = True

@@ -1,5 +1,5 @@
 from db import Base
-from sqlalchemy import Column, TEXT, VARCHAR, ForeignKey, Integer
+from sqlalchemy import Column, TEXT, VARCHAR, Integer
 
 # still noob but thinking one-one relationship so keeping in same table
 class Virus(Base):

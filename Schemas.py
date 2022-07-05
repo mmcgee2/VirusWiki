@@ -4,12 +4,12 @@ from pydantic import BaseModel
 
 
 class variant_create(BaseModel):
-    Variant: str
+    variant: str
 
 
 class virus_base(variant_create):
-    Changes: str
-    Description: str
+    changes: str
+    description: str
 
 
 class virus(variant_create):

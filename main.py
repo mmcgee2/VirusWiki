@@ -10,8 +10,9 @@ app = FastAPI()
 
 origins = [
     "https://desolate-sea-33600.herokuapp.com:3306",
-    "http://desolate-sea-33600.herokuapp.com/",
-    "https://viruswiki.pages.dev/",
+    "https://desolate-sea-33600.herokuapp.com/virus",
+    "https://desolate-sea-33600.herokuapp.com/virus/1"
+    "https://viruswiki.pages.dev:3000",
     "http://viruswiki.pages.dev/",
 ]
 
@@ -34,9 +35,7 @@ def get_db():
 
 @app.post("/virus/", response_model=Schemas.virus)
 def create_variant(virus: Schemas.variant_create, db: Session = Depends(get_db)):
-    db_virus = CRUD.get_variant(db, variant=virus.variant), CRUD.get_changes(
-        db, changes=virus.changes
-    )
+    db_virus = CRUD.get_variant(db, variant=virus.variant)
     if db_virus:
         raise HTTPException(status_code=400, detail="Variant already in use")
     return CRUD.create_variant(db=db, virus=virus)

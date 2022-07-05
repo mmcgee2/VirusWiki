@@ -8,11 +8,11 @@ class virus_base(BaseModel):
     Description: str
 
 
-class variant_create(BaseModel):
+class variant_create(virus_base):
     Variant: str
 
 
-class virus(variant_create):
+class virus(virus_base):
     id: int
 
     class Config:

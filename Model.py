@@ -6,6 +6,6 @@ class Virus(Base):
     __tablename__ = "sarscov2"
 
     id = Column(Integer, primary_key=True, index=True)
-    Variant = Column(VARCHAR, index=True)
-    Changes = Column(VARCHAR, unique=True, index=True)
+    Variant = Column(VARCHAR(255), index=True)
+    Changes = Column(VARCHAR(255), unique=True, index=True)
     Description = Column(TEXT, unique=True)

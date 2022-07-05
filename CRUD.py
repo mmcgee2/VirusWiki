@@ -1,4 +1,3 @@
-from requests import session
 from sqlalchemy.orm import Session
 import Model, Schemas
 

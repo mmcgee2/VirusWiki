@@ -33,7 +33,7 @@ def get_db():
         db.close()
 
 
-@app.post("/virus/", response_model=Schemas.virus)
+@app.post("/virus/{id}", response_model=Schemas.virus)
 def create_variant(virus: Schemas.variant_create, db: Session = Depends(get_db)):
     db_virus = CRUD.get_variant(db, variant=virus.variant)
     if db_virus:

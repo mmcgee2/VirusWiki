@@ -1,1 +1,1 @@
-web: gunicorn -k uvicorn.workers.UvicornWorker viruswiki.main:app
+web: gunicorn -k uvicorn.workers.UvicornWorker main:app

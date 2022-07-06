@@ -7,5 +7,5 @@ class Virus(Base):
 
     id = Column(Integer, primary_key=True, index=True, unique=True)
     variant = Column(VARCHAR(255), index=True)
-    changes = Column(VARCHAR(255), unique=True, index=True)
-    description = Column(TEXT, unique=True)
+    changes = Column(VARCHAR(255), index=True)
+    description = Column(TEXT)

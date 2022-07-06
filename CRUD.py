@@ -6,7 +6,7 @@ def get_id(db: Session, id: int):
     return db.query(Model.Virus).filter(Model.Virus.id == id).first()
 
 
-def get_variant(db: Session, variant: str, changes: str):
+def get_variant(db: Session, variant: str):
     return db.query(Model.Virus).filter(Model.Virus.variant == variant).first()
 
 
@@ -22,9 +22,11 @@ def get_variants(db: Session, skip: int = 0, limit: int = 10):
     return db.query(Model.Virus).offset(skip).limit(limit).all()
 
 
-def create_variant(db: Session, virus: Schemas.variant_create):
+def create_variant(db: Session, virus: Schemas.create_variant):
     db_virus = Model.Virus(
-        variant=virus.variant, changes=virus.changes, description=virus.description
+        changes=virus.changes,
+        description=virus.description,
+        variant=virus.variant,
     )
     db.add(db_virus)
     db.commit()

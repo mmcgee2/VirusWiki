@@ -33,23 +33,25 @@ def get_db():
         db.close()
 
 
-@app.post("/virus/", response_model=Schemas.virus)
-def create_variant(virus: Schemas.variant_create, db: Session = Depends(get_db)):
-    db_virus = CRUD.get_variant(db, variant=virus.variant)
+@app.post("/virus/", response_model=Schemas.create_variant)
+def create_variants(virus: Schemas.create_variant, db: Session = Depends(get_db)):
+    db_virus = (
+        CRUD.get_variant(db, variant=virus.variant),
+        CRUD.get_changes(db, changes=virus.changes),
+        CRUD.get_description(db, description=virus.description),
+    )
     if db_virus:
         raise HTTPException(status_code=400, detail="Variant already in use")
     return CRUD.create_variant(db=db, virus=virus)
 
 
-"""
-@app.get("/virus/", response_model=Schemas.virus)
+@app.get("/virus/", response_model=Schemas.create_variant)
 def read_variants(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
     variants = CRUD.get_variants(db, skip=skip, limit=limit)
     return variants
-"""
 
 
-@app.get("/virus/{id}", response_model=Schemas.virus)
+@app.get("/virus/{id}", response_model=Schemas.create_variant)
 def read_variant(id: int, db: Session = Depends(get_db)):
     db_virus = CRUD.get_id(db, id=id)
     if db_virus is None:

@@ -5,7 +5,7 @@ from sqlalchemy import Column, TEXT, VARCHAR, Integer
 class Virus(Base):
     __tablename__ = "sarscov2"
 
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True, index=True, unique=True)
     variant = Column(VARCHAR(255), index=True)
     changes = Column(VARCHAR(255), unique=True, index=True)
     description = Column(TEXT, unique=True)

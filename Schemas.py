@@ -1,6 +1,17 @@
 from pydantic import BaseModel
 
 
+class create_variant(BaseModel):
+    changes: str
+    description: str
+    variant: str
+    id: int
+
+    class Config:
+        orm_mode = True
+
+
+"""
 class virus_base(BaseModel):
     changes: str
     description: str
@@ -15,3 +26,4 @@ class virus(virus_base):
 
     class Config:
         orm_mode = True
+"""

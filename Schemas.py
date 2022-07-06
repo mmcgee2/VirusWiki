@@ -11,6 +11,13 @@ class create_variant(BaseModel):
         orm_mode = True
 
 
+class collection(create_variant):
+    items: list[create_variant] = []
+
+    class Config:
+        orm_mode = True
+
+
 """
 class virus_base(BaseModel):
     changes: str

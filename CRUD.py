@@ -18,7 +18,7 @@ def get_description(db: Session, description: str):
     return db.query(Model.Virus).filter(Model.Virus.description == description).first()
 
 
-def get_variants(db: Session, skip: int = 0, limit: int = 10):
+def get_variants(db: Session, skip: int = 1, limit: int = 10):
     return db.query(Model.Virus).offset(skip).limit(limit).all()
 
 

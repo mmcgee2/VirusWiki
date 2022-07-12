@@ -11,14 +11,13 @@ app = FastAPI()
 origins = [
     "https://desolate-sea-33600.herokuapp.com:3306",
     "https://desolate-sea-33600.herokuapp.com/virus",
-    "https://desolate-sea-33600.herokuapp.com/virus/1"
     "https://viruswiki.pages.dev:3000",
     "http://viruswiki.pages.dev/",
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],

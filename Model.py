@@ -1,3 +1,5 @@
+from typing import Text
+from matplotlib.pyplot import text
 from db import Base
 from sqlalchemy import Column, TEXT, VARCHAR, Integer
 
@@ -10,3 +12,10 @@ class Virus(Base):
     changes = Column(VARCHAR(255), index=True)
     description = Column(TEXT)
     description2 = Column(TEXT)
+
+
+class Overview(Base):
+    __tablename__ = "overview"
+
+    summary = Column(TEXT)
+    purpose = Column(TEXT)

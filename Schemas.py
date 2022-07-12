@@ -8,12 +8,14 @@ class create_variant(BaseModel):
     description: str
     description2: str
 
-    class Config:
-        orm_mode = True
-
 
 class collection(create_variant):
     items: list[create_variant] = []
 
     class Config:
         orm_mode = True
+
+
+class articles(BaseModel):
+    summary: str
+    purpose: str

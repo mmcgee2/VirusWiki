@@ -59,3 +59,20 @@ def read_variant(id: int, db: Session = Depends(get_db)):
     if db_virus is None:
         raise HTTPException(status_code=404, detail="Variant not found")
     return db_virus
+
+
+@app.post("/overview/", response_model=Schemas.articles)
+def review(review: Schemas.articles, db: Session = Depends(get_db)):
+    db_review = (
+        CRUD.get_summary(db, summary=review.summary),
+        CRUD.get_purpose(db, purpose=review.purpose),
+    )
+    if not db_review:
+        raise HTTPException(status_code=400, detail="Already posted")
+    return CRUD.article(db=db, review=review)
+
+
+@app.get("/overview/", response_model=Schemas.articles)
+def read_overview(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
+    overview = CRUD.get_overview(db, skip=skip, limit=limit)
+    return overview

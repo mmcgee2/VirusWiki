@@ -24,7 +24,19 @@ def get_description2(db: Session, description2: str):
     )
 
 
+def get_summary(db: Session, summary: str):
+    return db.query(Model.Overview).filter(Model.Overview.summary == summary).first()
+
+
+def get_purpose(db: Session, purpose: str):
+    return db.query(Model.Overview).filter(Model.Overview.purpose == purpose).first()
+
+
 def get_variants(db: Session, skip: int = 1, limit: int = 10):
+    return db.query(Model.Virus).offset(skip).limit(limit).all()
+
+
+def get_overview(db: Session, skip: int = 1, limit: int = 10):
     return db.query(Model.Virus).offset(skip).limit(limit).all()
 
 
@@ -39,3 +51,11 @@ def create_variant(db: Session, virus: Schemas.create_variant):
     db.commit()
     db.refresh(db_virus)
     return db_virus
+
+
+def article(db: Session, review: Schemas.articles):
+    db_review = Model.Virus(summary=review.summary, purpose=review.purpose)
+    db.add(db_review)
+    db.commit
+    db.refresh(db_review)
+    return db_review

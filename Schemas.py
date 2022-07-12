@@ -8,6 +8,9 @@ class create_variant(BaseModel):
     description: str
     description2: str
 
+    class Config:
+        orm_mode = True
+
 
 class collection(create_variant):
     items: list[create_variant] = []
@@ -20,3 +23,10 @@ class articles(BaseModel):
     id: int
     summary: str
     purpose: str
+
+
+class collections(articles):
+    item: list[articles] = []
+
+    class Config:
+        orm_mode = True

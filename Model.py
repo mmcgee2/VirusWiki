@@ -1,3 +1,4 @@
+from enum import unique
 from db import Base
 from sqlalchemy import Column, TEXT, VARCHAR, Integer
 
@@ -15,5 +16,6 @@ class Virus(Base):
 class Overview(Base):
     __tablename__ = "overview"
 
+    id = Column(Integer, primary_key=True, index=True, unique=True)
     summary = Column(TEXT)
     purpose = Column(TEXT)

@@ -17,5 +17,6 @@ class collection(create_variant):
 
 
 class articles(BaseModel):
+    id: int
     summary: str
     purpose: str

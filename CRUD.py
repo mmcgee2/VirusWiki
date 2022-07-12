@@ -17,8 +17,11 @@ def get_changes(db: Session, changes: str):
 def get_description(db: Session, description: str):
     return db.query(Model.Virus).filter(Model.Virus.description == description).first()
 
+
 def get_description2(db: Session, description2: str):
-    return db.query(Model.Virus).filter(Model.Virus.description2 == description2).first()
+    return (
+        db.query(Model.Virus).filter(Model.Virus.description2 == description2).first()
+    )
 
 
 def get_variants(db: Session, skip: int = 1, limit: int = 10):
@@ -29,7 +32,7 @@ def create_variant(db: Session, virus: Schemas.create_variant):
     db_virus = Model.Virus(
         changes=virus.changes,
         description=virus.description,
-        description2 = virus.description2
+        description2=virus.description2,
         variant=virus.variant,
     )
     db.add(db_virus)

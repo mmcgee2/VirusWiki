@@ -9,3 +9,4 @@ class Virus(Base):
     variant = Column(VARCHAR(255), index=True)
     changes = Column(VARCHAR(255), index=True)
     description = Column(TEXT)
+    description2 = Column(TEXT)

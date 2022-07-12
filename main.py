@@ -38,6 +38,7 @@ def create_variants(virus: Schemas.create_variant, db: Session = Depends(get_db)
         CRUD.get_variant(db, variant=virus.variant),
         CRUD.get_changes(db, changes=virus.changes),
         CRUD.get_description(db, description=virus.description),
+        CRUD.get_description2(db, description2=virus.description2),
     )
     if not db_virus:
         raise HTTPException(status_code=400, detail="Variant already in use")

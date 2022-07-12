@@ -6,6 +6,7 @@ class create_variant(BaseModel):
     variant: str
     changes: str
     description: str
+    description2: str
 
     class Config:
         orm_mode = True
@@ -16,21 +17,3 @@ class collection(create_variant):
 
     class Config:
         orm_mode = True
-
-
-"""
-class virus_base(BaseModel):
-    changes: str
-    description: str
-
-
-class variant_create(virus_base):
-    variant: str
-
-
-class virus(virus_base):
-    id: int
-
-    class Config:
-        orm_mode = True
-"""

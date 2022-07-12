@@ -1,5 +1,3 @@
-from typing import Text
-from matplotlib.pyplot import text
 from db import Base
 from sqlalchemy import Column, TEXT, VARCHAR, Integer
 

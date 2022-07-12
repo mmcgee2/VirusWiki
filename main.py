@@ -72,7 +72,7 @@ def review(review: Schemas.articles, db: Session = Depends(get_db)):
     return CRUD.article(db=db, review=review)
 
 
-@app.get("/overview/", response_model=Schemas.collections)
+@app.get("/overview/", response_model=list[Schemas.collections])
 def read_overview(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
     overview = CRUD.get_overview(db, skip=skip, limit=limit)
     return overview

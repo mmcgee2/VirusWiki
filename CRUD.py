@@ -37,7 +37,7 @@ def get_variants(db: Session, skip: int = 1, limit: int = 10):
 
 
 def get_overview(db: Session, skip: int = 1, limit: int = 10):
-    return db.query(Model.Virus).offset(skip).limit(limit).all()
+    return db.query(Model.Overview).offset(skip).limit(limit).all()
 
 
 def create_variant(db: Session, virus: Schemas.create_variant):
@@ -54,7 +54,7 @@ def create_variant(db: Session, virus: Schemas.create_variant):
 
 
 def article(db: Session, review: Schemas.articles):
-    db_review = Model.Virus(summary=review.summary, purpose=review.purpose)
+    db_review = Model.Overview(summary=review.summary, purpose=review.purpose)
     db.add(db_review)
     db.commit
     db.refresh(db_review)

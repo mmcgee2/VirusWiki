@@ -20,7 +20,7 @@ class collection(create_variant):
 
 
 class articles(BaseModel):
-    id: int
+    id: str
     summary: str
     purpose: str
 

@@ -42,7 +42,6 @@ def get_overview(db: Session, skip: int = 1, limit: int = 10):
 
 def create_variant(db: Session, virus: Schemas.create_variant):
     db_virus = Model.Virus(
-        {"virus": virus},
         changes=virus.changes,
         description=virus.description,
         description2=virus.description2,

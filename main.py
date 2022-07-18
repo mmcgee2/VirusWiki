@@ -37,7 +37,8 @@ def get_db():
 
 @app.post("/virus/", response_model=Schemas.create_variant)
 def create_variants(
-    virus: Schemas.create_variant = Body(embed=True), db: Session = Depends(get_db)
+    virus: Schemas.create_variant = Body(default=None, embed=True),
+    db: Session = Depends(get_db),
 ):
     db_virus = (
         CRUD.get_variant(db, variant=virus.variant),

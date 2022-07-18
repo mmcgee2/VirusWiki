@@ -40,6 +40,7 @@ def create_variants(
     virus: Schemas.create_variant = Body(default=None, embed=True),
     db: Session = Depends(get_db),
 ):
+    result = {"virus": virus}
     db_virus = (
         CRUD.get_variant(db, variant=virus.variant),
         CRUD.get_changes(db, changes=virus.changes),
@@ -48,7 +49,7 @@ def create_variants(
     )
     if not db_virus:
         raise HTTPException(status_code=400, detail="Variant already in use")
-    return CRUD.create_variant(db=db, virus=virus)
+    return result, CRUD.create_variant(db=db, virus=virus)
 
 
 @app.get("/virus/", response_model=list[Schemas.collection])

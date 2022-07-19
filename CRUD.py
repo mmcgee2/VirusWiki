@@ -24,8 +24,12 @@ def get_description2(db: Session, description2: str):
     )
 
 
-def get_summary(db: Session, summary: str):
-    return db.query(Model.Overview).filter(Model.Overview.summary == summary).first()
+def get_works_cited(db: Session, works_cited: str):
+    return (
+        db.query(Model.Overview)
+        .filter(Model.Overview.works_cited == works_cited)
+        .first()
+    )
 
 
 def get_purpose(db: Session, purpose: str):
@@ -54,7 +58,7 @@ def create_variant(db: Session, virus: Schemas.create_variant):
 
 
 def article(db: Session, review: Schemas.articles):
-    db_review = Model.Overview(summary=review.summary, purpose=review.purpose)
+    db_review = Model.Overview(works_cited=review.works_cited, purpose=review.purpose)
     db.add(db_review)
     db.commit
     db.refresh(db_review)

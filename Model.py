@@ -17,5 +17,5 @@ class Overview(Base):
     __tablename__ = "overview"
 
     id = Column(VARCHAR(255), primary_key=True, index=True, unique=True)
-    summary = Column(TEXT)
+    works_cited = Column(TEXT)
     purpose = Column(TEXT)

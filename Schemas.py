@@ -21,7 +21,7 @@ class collection(create_variant):
 
 class articles(BaseModel):
     id: str
-    summary: str
+    works_cited: str
     purpose: str
 
 

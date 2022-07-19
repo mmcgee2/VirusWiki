@@ -69,7 +69,7 @@ def read_variant(id: int, db: Session = Depends(get_db)):
 @app.post("/overview/", response_model=Schemas.articles)
 def review(review: Schemas.articles, db: Session = Depends(get_db)):
     db_review = (
-        CRUD.get_summary(db, summary=review.summary),
+        CRUD.get_summary(db, works_cited=review.works_cited),
         CRUD.get_purpose(db, purpose=review.purpose),
     )
     if not db_review:

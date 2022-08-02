@@ -66,6 +66,26 @@ def read_variant(id: int, db: Session = Depends(get_db)):
     return db_virus
 
 
+@app.put("/virus/{id}", response_model=Schemas.create_variant)
+def update_variant(
+    id: int,
+    virus: Schemas.create_variant = Body(default=None, embed=True),
+    db: Session = Depends(get_db),
+):
+    db_virus = CRUD.get_id(db, id=id)
+    if db_virus is None:
+        raise HTTPException(status_code=404, detail="Variant not found")
+    return db_virus, CRUD.update_variant(db=db, id=id, virus=virus)
+
+
+@app.delete("/virus/{id}")
+def delete_variant(id: int, db: Session = Depends(get_db)):
+    db_virus = CRUD.get_id(db, id=id)
+    if db_virus is None:
+        raise HTTPException(status_code=404, detail="Variant not found")
+    return CRUD.delete_variant(db=db, id=id)
+
+
 @app.post("/overview/", response_model=Schemas.articles)
 def review(review: Schemas.articles, db: Session = Depends(get_db)):
     db_review = (
